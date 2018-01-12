@@ -1,0 +1,162 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Video Test For Mobile</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+<video id="video" autobuffer height="240" width="360">
+  <source src="http://www.broken-links.com/tests/media/BigBuck.m4v">
+  <source src="http://www.broken-links.com/tests/media/BigBuck.webm" type="video/webm">
+  <source src="http://www.broken-links.com/tests/media/BigBuck.theora.ogv" type="video/ogg">
+</video>
+<script>
+	var video = document.getElementById('video');
+	video.addEventListener("canplay", function() {
+	video.pause();
+	console.log("canplay.");
+//video.addEventListener("click" , playwhenclicked);
+ });
+</script>
+<div class="mortise" style="width:50px; height:50px; background-color:#11ccff; position:absolute; top:100px; left:-50px; cursor: pointer;">mor tise</div>
+<div class="animatedthing" style="width:50px; height:50px; background-color:#F075AE; position:absolute; top:10px; left:10px;">sell msg</div>
+<div class="custom_pause_button" style="width:50px; height:50px; background-color:#ccffAE; position:absolute; top:198px; cursor: pointer;">pause</div>
+<div class="custom_play_button" style="width:50px; height:50px; background-color:#F0ccAE; position:absolute; top:198px; left: 58px; cursor: pointer;">play</div>
+<script>
+
+        video.addEventListener("play", function() {
+
+            //  video.play();
+
+            console.log("vid is playin'.");
+
+ 
+
+ 
+
+            $(".animatedthing").hide();
+
+ 
+
+ 
+
+            //video.addEventListener("click" , playwhenclicked);
+
+ 
+
+ 
+
+        });
+
+ 
+
+ 
+
+        video.addEventListener("ended", function() {
+
+            //  video.play();
+
+            console.log("the video has ended.");
+
+ 
+
+ 
+
+            $(".animatedthing").show();
+
+            $(".animatedthing").animate({
+
+                left: '300px'
+
+            });
+
+ 
+
+ 
+
+            //video.addEventListener("click" , playwhenclicked);
+
+ 
+
+ 
+
+        });
+
+ 
+
+ 
+
+        var VideoCuePoint = 1;
+
+ 
+
+        video.addEventListener("timeupdate", LaunchMortise);
+
+ 
+
+        function LaunchMortise() {
+
+ 
+
+            console.log("timeupdater: " + video.currentTime);
+
+ 
+
+            if (video.currentTime > VideoCuePoint) {
+
+ 
+
+                $(".mortise").animate({
+
+                    left: '150px'
+
+                });
+
+ 
+
+                video.removeEventListener("timeupdate", LaunchMortise);
+
+ 
+
+            }
+
+ 
+
+        };
+
+ 
+
+        $('.custom_play_button').click(function(e) {
+
+ 
+
+            console.log("play button clicked.");
+
+            video.play();
+
+ 
+
+        });
+
+ 
+
+        $('.custom_pause_button').click(function(e) {
+
+ 
+
+            console.log("pause button clicked.");
+
+            video.pause();
+
+ 
+
+        });
+
+ 
+
+    </script>
+</body>
+</html>
